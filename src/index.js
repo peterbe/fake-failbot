@@ -1,7 +1,6 @@
 import express from "express";
 import chalk from "chalk";
 
-// const { JSONFile } = require("lowdb/node");
 import { Low } from "lowdb";
 import { JSONFile } from "lowdb/node";
 
@@ -12,9 +11,8 @@ app.use(express.json());
 
 const DB_FILE = "db.json";
 const adapter = new JSONFile(DB_FILE);
-const db = new Low(adapter);
+const db = new Low(adapter, { errors: [] });
 await db.read();
-db.data ||= { errors: [] };
 
 app.get("/*", (req, res) => {
   console.log(req.url);
