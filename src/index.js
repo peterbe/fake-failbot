@@ -41,11 +41,11 @@ app.post("/*", (req, res) => {
   console.log("");
   for (const [date, counts] of rollups(db.data.errors, "message")) {
     console.log(
-      `Rollups ${chalk.bold(date)} ${chalk.dim("(delete db.json to reset)")}`
+      `Rollups ${chalk.bold(date)} ${chalk.dim("(delete db.json to reset)")}`,
     );
     for (const [value, count] of Object.entries(counts)) {
       console.log(
-        `${chalk.yellowBright(`${count}`.padStart(3))}  ${chalk.green(value)}`
+        `${chalk.yellowBright(`${count}`.padStart(3))}  ${chalk.green(value)}`,
       );
     }
   }
