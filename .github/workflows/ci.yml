@@ -44,6 +44,10 @@ jobs:
           # If 'grep' fails, jq couldn't find what it expected
           cat db.json | jq ".errors[0].body.message" | grep teststring
 
+      - name: Inspect stdout
+        run: |
+          cat /tmp/stdout.log | grep "POST /api/error"
+
       - if: ${{ failure() }}
         name: Debug server outputs on errors
         run: |
