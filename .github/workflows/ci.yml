@@ -46,6 +46,7 @@ jobs:
 
       - name: Inspect stdout
         run: |
+          cat /tmp/stdout.log
           cat /tmp/stdout.log | grep "POST /api/error"
 
       - if: ${{ failure() }}
