@@ -21,7 +21,7 @@ app.get("/*", (req, res) => {
   res.send(msg);
 });
 app.post("/*", (req, res) => {
-  const msg = `POSTING to ${req.url.slice(1)}`;
+  const msg = `POSTING to ${req.url}`;
   console.log("Error reporting!");
   for (const [key, value] of Object.entries(req.body || {})) {
     console.log("  ", chalk.bold(key), chalk.red(`${value}`.slice(0, 100)));
