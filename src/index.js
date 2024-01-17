@@ -59,7 +59,6 @@ function rollups(errors, key) {
     console.log(thing);
     break;
   }
-  // return [];
   for (const { date, body } of errors) {
     const dateStr =
       typeof date === "string"
@@ -70,27 +69,7 @@ function rollups(errors, key) {
     }
     const count = byDay[dateStr];
     const value = body[key] || "/no value/";
-    // for (const body of ) {
     count[value] = (count[value] || 0) + 1;
-    // }
-  }
-  return Object.entries(byDay).sort((a, b) => a[0].localeCompare(b[0]));
-}
-
-function countSchemas(events) {
-  const byDay = {};
-  for (const { date, body } of events) {
-    const dateStr =
-      typeof date === "string"
-        ? date.split("T")[0]
-        : date.toISOString().split("T")[0];
-    if (!(dateStr in byDay)) {
-      byDay[dateStr] = {};
-    }
-    const count = byDay[dateStr];
-    for (const { schema } of body.events) {
-      count[schema] = (count[schema] || 0) + 1;
-    }
   }
   return Object.entries(byDay).sort((a, b) => a[0].localeCompare(b[0]));
 }
