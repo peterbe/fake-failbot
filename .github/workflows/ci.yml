@@ -35,6 +35,13 @@ jobs:
       - name: Ping server
         run: curl --retry-connrefused --retry 4 http://localhost:5555/
 
+      - name: Send something
+        run: |
+          curl -X POST http://localhost:5555/api/error -d '{"message": "test"}' -H 'Content-Type: application/json'
+
+      - name: Inspect db
+        run: cat db.json
+
       - if: ${{ failure() }}
         name: Debug server outputs on errors
         run: |
