@@ -37,10 +37,12 @@ jobs:
 
       - name: Send something
         run: |
-          curl -X POST http://localhost:5555/api/error -d '{"message": "test"}' -H 'Content-Type: application/json'
+          curl -X POST http://localhost:5555/api/error -d '{"message": "teststring"}' -H 'Content-Type: application/json'
 
       - name: Inspect db
-        run: cat db.json
+        run: |
+          # If 'grep' fails, jq couldn't find what it expected
+          cat db.json | jq ".errors[0].body.message" | grep teststring
 
       - if: ${{ failure() }}
         name: Debug server outputs on errors
